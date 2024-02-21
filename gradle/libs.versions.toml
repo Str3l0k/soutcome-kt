@@ -1,0 +1,37 @@
+# ================================================
+# Versions
+# ================================================
+[versions]
+kotlinter = "4.0.0"
+
+# kotlin + kotlin libs
+kotlin-lang = "1.9.10"
+kotlin-coroutines = "1.7.3"
+
+# unit test
+junit = "4.13.2"
+kotest = "5.7.2"
+
+# ================================================
+# Librarie definitions
+# ================================================
+
+[libraries]
+# Kotlin
+kotlin_coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
+
+# Unit testing
+kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+kotest-datatest = { group = "io.kotest", name = "kotest-framework-datatest", version.ref = "kotest" }
+
+# build-config dependencies
+build-kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-lang" }
+
+# ================================================
+# Plugin definitions
+# ================================================
+
+[plugins]
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-lang" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
+
