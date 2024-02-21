@@ -9,7 +9,6 @@ kotlin-lang = "1.9.10"
 kotlin-coroutines = "1.7.3"
 
 # unit test
-junit = "4.13.2"
 kotest = "5.7.2"
 
 # ================================================
