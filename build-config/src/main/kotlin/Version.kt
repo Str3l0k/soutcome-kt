@@ -2,9 +2,9 @@ import org.gradle.api.Project
 
 val major = 1
 val minor = 0
-val patch = 1
+val patch = 2
 
-val isTest = true
+val isTest = false
 val isSnapshot = false
 
 @Suppress("UnusedReceiverParameter")
