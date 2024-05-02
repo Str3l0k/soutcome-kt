@@ -1,9 +1,10 @@
 plugins {
     id("kotlin-library-config")
+    id("publish-to-maven-central")
 }
 
 kotlin {
-    version = "1.0.0"
+    version = project.generateVersion()
 }
 
 dependencies {

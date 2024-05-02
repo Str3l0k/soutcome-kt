@@ -9,7 +9,9 @@ repositories {
 }
 
 dependencies {
+    implementation(libs.build.gradle)
     implementation(libs.build.kotlin.plugin)
+    implementation(libs.build.maven.central.publish.plugin)
 }
 
 tasks.test {
