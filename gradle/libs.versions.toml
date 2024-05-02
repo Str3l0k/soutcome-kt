@@ -26,7 +26,6 @@ kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.re
 kotest-datatest = { group = "io.kotest", name = "kotest-framework-datatest", version.ref = "kotest" }
 
 # build-config dependencies
-build-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 build-kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-lang" }
 build-maven-central-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.28.0" }
 
