@@ -12,9 +12,7 @@ sealed class Outcome<out SuccessType, out ErrorType> {
             Outcome.{Success}<${value?.let { it::class.simpleName }}> with value {$value}
             """.trimIndent()
 
-        companion object {
-            val unit = Unit.asSuccess()
-        }
+        companion object
     }
 
     data class Error<out ErrorType> internal constructor(
@@ -25,16 +23,14 @@ sealed class Outcome<out SuccessType, out ErrorType> {
             Outcome.{Error}<${error?.let { it::class.simpleName }}> with value {$error}
             """.trimIndent()
 
-        companion object {
-            val unit = Unit.asError()
-        }
+        companion object
     }
 
     // =================================================
 
     companion object {
-        val SuccessUnit = Success.unit
-        val ErrorUnit = Error.unit
+        val SuccessUnit = Unit.asSuccess()
+        val ErrorUnit = Unit.asError()
 
         @Suppress("FunctionName")
         fun <S, E> Success(successValue: S): Outcome<S, E> = Success(value = successValue)

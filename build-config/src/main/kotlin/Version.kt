@@ -2,7 +2,7 @@ import org.gradle.api.Project
 
 val major = 1
 val minor = 0
-val patch = 2
+val patch = 3
 
 val isTest = false
 val isSnapshot = false

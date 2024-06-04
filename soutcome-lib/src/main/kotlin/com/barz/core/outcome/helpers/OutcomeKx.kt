@@ -1,6 +1,8 @@
 package com.barz.core.outcome.helpers
 
 import com.barz.core.outcome.Outcome
+import com.barz.core.outcome.Outcome.Companion.ErrorUnit
+import com.barz.core.outcome.Outcome.Companion.SuccessUnit
 import com.barz.core.outcome.Outcome.Error
 import com.barz.core.outcome.Outcome.Success
 import kotlin.contracts.ExperimentalContracts
@@ -26,8 +28,7 @@ fun <S, E> Outcome<S, E>.isError(): Boolean {
     return this is Error
 }
 
-@PublishedApi
-internal fun <S, E> Outcome<S, E>.unwrap(): S = (this as Success).value
+fun <S, E> Outcome<S, E>.unwrap(): S = (this as Success).value
 
 fun <S> S.asSuccess(): Outcome<S, Nothing> = Outcome.Success(successValue = this)
 
@@ -40,3 +41,9 @@ fun <S, E> E.asTypedError(): Outcome<S, E> = Outcome.Error(errorValue = this)
 fun <S> S.asOutcomeSuccess(): Outcome<S, Nothing> = this.asSuccess()
 
 fun <E> E.asOutcomeError(): Outcome<Nothing, E> = this.asError()
+
+@Suppress("RemoveRedundantQualifierName")
+fun Outcome.Success.Companion.unit() = SuccessUnit
+
+@Suppress("RemoveRedundantQualifierName")
+fun Outcome.Error.Companion.unit() = ErrorUnit
