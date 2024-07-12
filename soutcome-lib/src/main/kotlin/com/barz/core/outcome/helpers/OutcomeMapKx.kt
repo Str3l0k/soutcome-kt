@@ -10,8 +10,8 @@ inline fun <
     SuccessOut,
     ErrorOut,
     > Outcome<SuccessIn, ErrorIn>.flatMap(
-    crossinline mapSuccess: (SuccessIn) -> SuccessOut,
-    crossinline mapError: (ErrorIn) -> ErrorOut,
+    mapSuccess: (SuccessIn) -> SuccessOut,
+    mapError: (ErrorIn) -> ErrorOut,
 ): Outcome<SuccessOut, ErrorOut> =
     when (this) {
         is Error -> mapError(this.error).asError()
@@ -23,7 +23,7 @@ inline fun <
     ErrorIn,
     ErrorOut,
     > Outcome<Success, ErrorIn>.flatMapError(
-    crossinline mapError: (ErrorIn) -> ErrorOut,
+    mapError: (ErrorIn) -> ErrorOut,
 ): Outcome<Success, ErrorOut> =
     flatMap(
         mapSuccess = { successValue -> successValue },
@@ -35,7 +35,7 @@ inline fun <
     SuccessOut,
     Error,
     > Outcome<SuccessIn, Error>.flatMapSuccess(
-    crossinline mapSuccess: (SuccessIn) -> SuccessOut,
+    mapSuccess: (SuccessIn) -> SuccessOut,
 ): Outcome<SuccessOut, Error> =
     flatMap(
         mapSuccess = mapSuccess,

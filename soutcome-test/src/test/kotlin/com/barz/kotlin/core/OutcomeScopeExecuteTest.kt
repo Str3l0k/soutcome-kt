@@ -4,14 +4,18 @@ package com.barz.kotlin.core
 
 import com.barz.core.outcome.Outcome
 import com.barz.core.outcome.builder.outcome
+import com.barz.core.outcome.helpers.asError
 import com.barz.core.outcome.helpers.asOutcomeError
 import com.barz.core.outcome.helpers.asOutcomeSuccess
+import com.barz.core.outcome.helpers.asSuccess
+import com.barz.core.outcome.helpers.flatMap
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.EmptyCoroutineContext
 
 class OutcomeScopeExecuteTest : FunSpec(
     body = {
-
         context("Simple result") {
             test("Unit success") {
                 val outcome = outcome<Unit, Unit> {
@@ -196,6 +200,44 @@ class OutcomeScopeExecuteTest : FunSpec(
                         onError = { errorMessage -> errorMessage },
                     )
                 } shouldBe errorMessage.asOutcomeError()
+            }
+        }
+
+        context("Mapping") {
+            test("flatMap") {
+                val success: Outcome<Unit, Unit> = Unit.asSuccess()
+                val error: Outcome<Unit, Unit> = Unit.asError()
+
+                val mappedSuccess = success.flatMap(
+                    mapSuccess = { 42 },
+                    mapError = { /* no-op */ },
+                )
+
+                val mappedError = error.flatMap(
+                    mapSuccess = { /* no-op */ },
+                    mapError = { 42 },
+                )
+
+                mappedSuccess shouldBe 42.asSuccess()
+                mappedError shouldBe 42.asError()
+            }
+
+            test("flatMap suspending") {
+                val success: Outcome<Unit, Unit> = Unit.asSuccess()
+                val error: Outcome<Unit, Unit> = Unit.asError()
+
+                val mappedSuccess = success.flatMap(
+                    mapSuccess = { withContext(EmptyCoroutineContext) { 42 } },
+                    mapError = { /* no-op */ },
+                )
+
+                val mappedError = error.flatMap(
+                    mapSuccess = { /* no-op */ },
+                    mapError = { withContext(EmptyCoroutineContext) { 42 } },
+                )
+
+                mappedSuccess shouldBe 42.asSuccess()
+                mappedError shouldBe 42.asError()
             }
         }
     },
