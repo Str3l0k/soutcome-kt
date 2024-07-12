@@ -9,6 +9,7 @@ import com.barz.core.outcome.helpers.asOutcomeError
 import com.barz.core.outcome.helpers.asOutcomeSuccess
 import com.barz.core.outcome.helpers.asSuccess
 import com.barz.core.outcome.helpers.flatMap
+import com.barz.core.outcome.helpers.fold
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.withContext
@@ -238,6 +239,26 @@ class OutcomeScopeExecuteTest : FunSpec(
 
                 mappedSuccess shouldBe 42.asSuccess()
                 mappedError shouldBe 42.asError()
+            }
+        }
+
+        context("Fold") {
+            test("fold suspending") {
+                val success: Outcome<Int, Unit> = 42.asSuccess()
+                val error: Outcome<Unit, Unit> = Unit.asError()
+
+                val mappedSuccess = success.fold(
+                    onSuccess = { withContext(EmptyCoroutineContext) { it + 1 } },
+                    onError = { /* no-op */ },
+                )
+
+                val mappedError = error.fold(
+                    onSuccess = { /* no-op */ },
+                    onError = { withContext(EmptyCoroutineContext) { 42 } },
+                )
+
+                mappedSuccess shouldBe 43
+                mappedError shouldBe 42
             }
         }
     },
