@@ -3,11 +3,11 @@
 # ================================================
 [versions]
 # build config
-agp = "8.5.0"
+agp = "8.5.2"
 kotlinter = "4.0.0"
 
 # kotlin + kotlin libs
-kotlin-lang = "1.9.23"
+kotlin-lang = "2.0.10"
 kotlin-coroutines = "1.8.1"
 
 # unit test

@@ -4,6 +4,7 @@ import com.barz.core.outcome.Outcome
 import com.barz.core.outcome.OutcomeErrorException
 import com.barz.core.outcome.helpers.asOutcomeSuccess
 import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.InvocationKind
 import kotlin.contracts.InvocationKind.EXACTLY_ONCE
 import kotlin.contracts.contract
 
@@ -28,8 +29,8 @@ class OutcomeScope<S, E>
             onError: () -> E,
         ) {
             contract {
-                callsInPlace(condition, EXACTLY_ONCE)
-                callsInPlace(onError, EXACTLY_ONCE)
+                callsInPlace(condition, InvocationKind.AT_MOST_ONCE)
+                callsInPlace(onError, InvocationKind.AT_MOST_ONCE)
             }
 
             if (condition()) {
@@ -44,8 +45,8 @@ class OutcomeScope<S, E>
             onError: (V) -> E,
         ): U {
             contract {
-                callsInPlace(action, EXACTLY_ONCE)
-                callsInPlace(onError, EXACTLY_ONCE)
+                callsInPlace(action, InvocationKind.AT_MOST_ONCE)
+                callsInPlace(onError, InvocationKind.AT_MOST_ONCE)
             }
 
             return when (val outcome: Outcome<U, V> = action()) {
