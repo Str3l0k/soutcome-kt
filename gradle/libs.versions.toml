@@ -4,14 +4,14 @@
 [versions]
 # build config
 agp = "8.5.2"
-kotlinter = "4.0.0"
+kotlinter = "4.4.1"
 
 # kotlin + kotlin libs
 kotlin-lang = "2.0.10"
 kotlin-coroutines = "1.8.1"
 
 # unit test
-kotest = "5.7.2"
+kotest = "5.9.1"
 
 # ================================================
 # Librarie definitions

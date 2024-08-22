@@ -1,11 +1,11 @@
 import org.gradle.api.Project
 
-val major = 1
-val minor = 0
-val patch = 4
+const val major = 1
+const val minor = 0
+const val patch = 4
 
-val isTest = false
-val isSnapshot = false
+const val isTest = false
+const val isSnapshot = false
 
 @Suppress("UnusedReceiverParameter")
 fun Project.generateVersion(): String = buildString {
