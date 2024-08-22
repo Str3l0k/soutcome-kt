@@ -9,7 +9,7 @@ inline fun <
     ErrorIn,
     SuccessOut,
     ErrorOut,
-    > Outcome<SuccessIn, ErrorIn>.flatMap(
+> Outcome<SuccessIn, ErrorIn>.flatMap(
     mapSuccess: (SuccessIn) -> SuccessOut,
     mapError: (ErrorIn) -> ErrorOut,
 ): Outcome<SuccessOut, ErrorOut> =
@@ -22,7 +22,7 @@ inline fun <
     Success,
     ErrorIn,
     ErrorOut,
-    > Outcome<Success, ErrorIn>.flatMapError(
+> Outcome<Success, ErrorIn>.flatMapError(
     mapError: (ErrorIn) -> ErrorOut,
 ): Outcome<Success, ErrorOut> =
     flatMap(
@@ -34,7 +34,7 @@ inline fun <
     SuccessIn,
     SuccessOut,
     Error,
-    > Outcome<SuccessIn, Error>.flatMapSuccess(
+> Outcome<SuccessIn, Error>.flatMapSuccess(
     mapSuccess: (SuccessIn) -> SuccessOut,
 ): Outcome<SuccessOut, Error> =
     flatMap(

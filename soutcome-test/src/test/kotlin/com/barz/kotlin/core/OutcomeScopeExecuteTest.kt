@@ -3,6 +3,7 @@
 package com.barz.kotlin.core
 
 import com.barz.core.outcome.Outcome
+import com.barz.core.outcome.builder.onError
 import com.barz.core.outcome.builder.outcome
 import com.barz.core.outcome.helpers.asError
 import com.barz.core.outcome.helpers.asOutcomeError
@@ -29,7 +30,7 @@ class OutcomeScopeExecuteTest : FunSpec(
                 outcome shouldBe Unit.asOutcomeSuccess()
             }
 
-            test("Int (42) success") {
+            test("Int (42/43) success") {
                 val outcome = outcome<Int, Unit> {
                     execute(
                         action = { 42.asOutcomeSuccess() },
@@ -52,6 +53,14 @@ class OutcomeScopeExecuteTest : FunSpec(
                 }
 
                 outcome shouldBe Unit.asOutcomeError()
+
+                val outcome2 = outcome<Unit, Unit> {
+                    Unit
+                        .asError()
+                        .onError { Unit }
+                }
+
+                outcome2 shouldBe Unit.asOutcomeError()
             }
 
             test("Unit Error mapped to Int") {
@@ -63,6 +72,12 @@ class OutcomeScopeExecuteTest : FunSpec(
                 }
 
                 outcome shouldBe 42.asOutcomeError()
+
+                val outcome2 = outcome<Unit, Int> {
+                    Unit.asError().onError { 43 }
+                }
+
+                outcome2 shouldBe 43.asOutcomeError()
             }
         }
 

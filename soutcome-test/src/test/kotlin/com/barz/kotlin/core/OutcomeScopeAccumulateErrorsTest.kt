@@ -1,3 +1,5 @@
+@file:Suppress("RedundantUnitExpression")
+
 package com.barz.kotlin.core
 
 import com.barz.core.outcome.Outcome
