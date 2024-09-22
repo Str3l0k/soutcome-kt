@@ -2,7 +2,6 @@ package com.barz.core.outcome.builder.accumulate
 
 import com.barz.core.outcome.Outcome
 import com.barz.core.outcome.builder.OutcomeScope
-import com.barz.core.outcome.builder.returnOrRaise
 import com.barz.core.outcome.helpers.asError
 import com.barz.core.outcome.helpers.asSuccess
 
@@ -17,10 +16,11 @@ import com.barz.core.outcome.helpers.asSuccess
  * **Returns** outcome with either success if no errors occurred or all accumulated errors
  * as List.
  */
+@Suppress("UnusedReceiverParameter")
 inline fun <Success, Error> OutcomeScope<Success, List<Error>>.accumulateErrors(
     block: AccumulateScope<Success, Error>.() -> Success,
 ): Outcome<Success, List<Error>> {
-    val scope = AccumulateScope()
+    val scope = AccumulateScope<Success, Error>()
     val successValue = scope.block()
 
     return if (scope.errors.isNotEmpty()) {

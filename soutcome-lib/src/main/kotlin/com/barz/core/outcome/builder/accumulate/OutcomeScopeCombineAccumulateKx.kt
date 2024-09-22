@@ -2,11 +2,11 @@ package com.barz.core.outcome.builder.accumulate
 
 import com.barz.core.outcome.Outcome
 import com.barz.core.outcome.builder.OutcomeScope
+import com.barz.core.outcome.helpers.asTypedError
 import com.barz.core.outcome.helpers.flatMapError
 import com.barz.core.outcome.helpers.process
 import com.barz.core.outcome.helpers.unwrap
 
-context(OutcomeScope<Success, List<Error>>)
 inline fun <Success, Error, A, B> AccumulateScope<Success, Error>.combineOrAccumulate(
     block1: () -> Outcome<A, Error>,
     block2: () -> Outcome<B, Error>,
@@ -23,7 +23,6 @@ inline fun <Success, Error, A, B> AccumulateScope<Success, Error>.combineOrAccum
         },
     )
 
-context(OutcomeScope<Success, List<Error>>)
 inline fun <Success, Error, A, B, C> AccumulateScope<Success, Error>.combineOrAccumulate(
     block1: () -> Outcome<A, Error>,
     block2: () -> Outcome<B, Error>,
@@ -41,7 +40,6 @@ inline fun <Success, Error, A, B, C> AccumulateScope<Success, Error>.combineOrAc
         },
     )
 
-context(OutcomeScope<Success, List<Error>>)
 inline fun <Success, Error, A, B, C, D> AccumulateScope<Success, Error>.combineOrAccumulate(
     block1: () -> Outcome<A, Error>,
     block2: () -> Outcome<B, Error>,
@@ -60,7 +58,6 @@ inline fun <Success, Error, A, B, C, D> AccumulateScope<Success, Error>.combineO
         },
     )
 
-context(OutcomeScope<Success, List<Error>>)
 inline fun <Success, Error, A, B, C, D, E> AccumulateScope<Success, Error>.combineOrAccumulate(
     block1: () -> Outcome<A, Error>,
     block2: () -> Outcome<B, Error>,
@@ -85,7 +82,7 @@ inline fun <Success, Error, A, B, C, D, E> AccumulateScope<Success, Error>.combi
 
     if (errors.isNotEmpty()) {
         raiseAccumulate(errors)
-        return errors.asErrorScoped()
+        return errors.asTypedError()
     }
 
     val combineOutcome: Outcome<Success, Error> =

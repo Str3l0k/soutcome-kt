@@ -8,7 +8,6 @@ tasks.withType<KotlinCompile> {
         jvmTarget.set(JvmTarget.JVM_17)
         freeCompilerArgs.set(
             listOf(
-                "-Xcontext-receivers",
             ),
         )
         languageVersion.set(KotlinVersion.KOTLIN_2_0)

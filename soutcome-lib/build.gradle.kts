@@ -4,6 +4,9 @@ plugins {
 }
 
 kotlin {
+    println("Kotlin version: ${libs.versions.kotlin.lang.get()}")
+    println("Project version: ${project.generateVersion()}")
+
     version = project.generateVersion()
 }
 

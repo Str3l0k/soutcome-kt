@@ -6,8 +6,7 @@ import com.barz.core.outcome.Outcome
 import com.barz.core.outcome.builder.OutcomeScope
 import kotlin.experimental.ExperimentalTypeInference
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B> combineOutcome(
+inline fun <Success, Error, A, B> OutcomeScope<Success, Error>.combineOutcome(
     action1: () -> Outcome<A, Error>,
     action2: () -> Outcome<B, Error>,
     crossinline onSuccess: (A, B) -> Outcome<Success, Error>,
@@ -24,8 +23,7 @@ inline fun <Success, Error, A, B> combineOutcome(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C> combineOutcome(
+inline fun <Success, Error, A, B, C> OutcomeScope<Success, Error>.combineOutcome(
     action1: () -> Outcome<A, Error>,
     action2: () -> Outcome<B, Error>,
     action3: () -> Outcome<C, Error>,
@@ -43,8 +41,7 @@ inline fun <Success, Error, A, B, C> combineOutcome(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C, D> combineOutcome(
+inline fun <Success, Error, A, B, C, D> OutcomeScope<Success, Error>.combineOutcome(
     action1: () -> Outcome<A, Error>,
     action2: () -> Outcome<B, Error>,
     action3: () -> Outcome<C, Error>,
@@ -63,8 +60,7 @@ inline fun <Success, Error, A, B, C, D> combineOutcome(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C, D, E> combineOutcome(
+inline fun <Success, Error, A, B, C, D, E> OutcomeScope<Success, Error>.combineOutcome(
     action1: () -> Outcome<A, Error>,
     action2: () -> Outcome<B, Error>,
     action3: () -> Outcome<C, Error>,
@@ -84,8 +80,7 @@ inline fun <Success, Error, A, B, C, D, E> combineOutcome(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C, D, E, F> combineOutcome(
+inline fun <Success, Error, A, B, C, D, E, F> OutcomeScope<Success, Error>.combineOutcome(
     action1: () -> Outcome<A, Error>,
     action2: () -> Outcome<B, Error>,
     action3: () -> Outcome<C, Error>,

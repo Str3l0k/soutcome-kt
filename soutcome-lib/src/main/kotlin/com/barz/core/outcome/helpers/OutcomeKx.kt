@@ -11,8 +11,8 @@ import kotlin.contracts.contract
 @OptIn(ExperimentalContracts::class)
 fun <S, E> Outcome<S, E>.isSuccess(): Boolean {
     contract {
-        returns(true) implies (this@Outcome is Success<S>)
-        returns(false) implies (this@Outcome is Error<E>)
+        returns(true) implies (this@isSuccess is Success)
+        returns(false) implies (this@isSuccess is Error)
     }
 
     return this is Success
@@ -21,8 +21,8 @@ fun <S, E> Outcome<S, E>.isSuccess(): Boolean {
 @OptIn(ExperimentalContracts::class)
 fun <S, E> Outcome<S, E>.isError(): Boolean {
     contract {
-        returns(true) implies (this@Outcome is Error<E>)
-        returns(false) implies (this@Outcome is Success<S>)
+        returns(true) implies (this@isError is Error<E>)
+        returns(false) implies (this@isError is Success<S>)
     }
 
     return this is Error

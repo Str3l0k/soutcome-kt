@@ -2,7 +2,6 @@ package com.barz.core.outcome.builder.accumulate
 
 import com.barz.core.outcome.Outcome
 
-context(com.barz.core.outcome.builder.OutcomeScope<Success, List<Error>>)
 class AccumulateScope<Success, Error>
     @PublishedApi
     internal constructor() {

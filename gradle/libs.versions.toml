@@ -3,12 +3,11 @@
 # ================================================
 [versions]
 # build config
-agp = "8.5.2"
 kotlinter = "4.4.1"
 
 # kotlin + kotlin libs
-kotlin-lang = "2.0.10"
-kotlin-coroutines = "1.8.1"
+kotlin-lang = "2.0.20"
+kotlin-coroutines = "1.9.0"
 
 # unit test
 kotest = "5.9.1"
@@ -27,15 +26,12 @@ kotest-datatest = { group = "io.kotest", name = "kotest-framework-datatest", ver
 
 # build-config dependencies
 build-kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-lang" }
-build-maven-central-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.28.0" }
+build-maven-central-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.29.0" }
 
 # ================================================
 # Plugin definitions
 # ================================================
 
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-lang" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-lang" }
 kotlinter = { id = "org.jmailen.kotlinter", version.ref = "kotlinter" }
-

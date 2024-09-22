@@ -73,7 +73,7 @@ class OutcomeScope<S, E>
 
         /**
          * Shortcut to an outcome error.
-         * If a error is raised, everything after this call will not be executed anymore,
+         * If an error is raised, everything after this call will not be executed anymore,
          * but instead the outcome builder call will return this error value
          * as Outcome.Error directly.
          */
@@ -89,7 +89,17 @@ class OutcomeScope<S, E>
             }
         }
 
-        fun S.asSuccessScoped(): Outcome<S, E> = Outcome.Success(value = this)
+        fun <S1, E1> Outcome<S1, E1>.raiseOnError(onError: (E1) -> E): S1 {
+            when (this) {
+                is Outcome.Error -> raise(onError(this.error))
+                is Outcome.Success -> return this.value
+            }
+        }
 
-        fun E.asErrorScoped(): Outcome<S, E> = Outcome.Error(this)
+        fun Outcome<S, E>.returnOrRaise(): S {
+            when (this) {
+                is Outcome.Error -> raise(this.error)
+                is Outcome.Success -> return this.value
+            }
+        }
     }

@@ -4,8 +4,7 @@ import com.barz.core.outcome.Outcome
 import com.barz.core.outcome.builder.OutcomeScope
 import com.barz.core.outcome.helpers.unwrap
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B> combine(
+inline fun <Success, Error, A, B> OutcomeScope<Success, Error>.combine(
     action1: CombineScope<Error>.() -> Outcome<A, Error>,
     action2: CombineScope<Error>.() -> Outcome<B, Error>,
     onSuccess: (A, B) -> Success,
@@ -22,8 +21,7 @@ inline fun <Success, Error, A, B> combine(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C> combine(
+inline fun <Success, Error, A, B, C> OutcomeScope<Success, Error>.combine(
     action1: CombineScope<Error>.() -> Outcome<A, Error>,
     action2: CombineScope<Error>.() -> Outcome<B, Error>,
     action3: CombineScope<Error>.() -> Outcome<C, Error>,
@@ -41,8 +39,7 @@ inline fun <Success, Error, A, B, C> combine(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C, D> combine(
+inline fun <Success, Error, A, B, C, D> OutcomeScope<Success, Error>.combine(
     action1: CombineScope<Error>.() -> Outcome<A, Error>,
     action2: CombineScope<Error>.() -> Outcome<B, Error>,
     action3: CombineScope<Error>.() -> Outcome<C, Error>,
@@ -61,8 +58,7 @@ inline fun <Success, Error, A, B, C, D> combine(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C, D, E> combine(
+inline fun <Success, Error, A, B, C, D, E> OutcomeScope<Success, Error>.combine(
     action1: CombineScope<Error>.() -> Outcome<A, Error>,
     action2: CombineScope<Error>.() -> Outcome<B, Error>,
     action3: CombineScope<Error>.() -> Outcome<C, Error>,
@@ -82,8 +78,7 @@ inline fun <Success, Error, A, B, C, D, E> combine(
         },
     )
 
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A, B, C, D, E, F> combine(
+inline fun <Success, Error, A, B, C, D, E, F> OutcomeScope<Success, Error>.combine(
     action1: CombineScope<Error>.() -> Outcome<A, Error>,
     action2: CombineScope<Error>.() -> Outcome<B, Error>,
     action3: CombineScope<Error>.() -> Outcome<C, Error>,
@@ -114,8 +109,7 @@ inline fun <Success, Error, A, B, C, D, E, F> combine(
  * from executions are identical and therefore an undefined number of them
  * can be combined.
  */
-context(OutcomeScope<Success, Error>)
-inline fun <Success, Error, A> combine(
+inline fun <Success, Error, A> OutcomeScope<Success, Error>.combine(
     vararg actions: CombineScope<Error>.() -> Outcome<A, Error>,
     onAllSuccess: (List<A>) -> Success,
 ): Success {
