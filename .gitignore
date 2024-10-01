@@ -6,6 +6,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+.iml
 
 /.idea/caches
 /.idea/libraries
@@ -24,3 +25,4 @@ local.properties
 
 /buildSrc/build/
 /buildSrc/.gradle/
+/.idea/modules/
