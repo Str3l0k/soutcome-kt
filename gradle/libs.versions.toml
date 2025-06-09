@@ -3,11 +3,11 @@
 # ================================================
 [versions]
 # build config
-kotlinter = "4.4.1"
+kotlinter = "5.1.1"
 
 # kotlin + kotlin libs
-kotlin-lang = "2.0.20"
-kotlin-coroutines = "1.9.0"
+kotlin-lang = "2.1.21"
+kotlin-coroutines = "1.10.2"
 
 # unit test
 kotest = "5.9.1"
