@@ -31,6 +31,8 @@ It will rarely be necessary to create a Outcome instance directly, which was one
 
 It provides multiple functions to execute other outcome based functions, e.g. from repositories or data sources.
 
+TODO
+
 
 #### 2. Direct instance creation
 
@@ -59,3 +61,8 @@ It is necessary to provide both Success and Error generic types.
 val typedSuccess = "Any object".asTypedSuccess<String, *Error*>()
 val typedError   = "Any object".asTypedError<*Success*, String>()
 ```
+
+#### 3. Pitfalls
+3.1 Using Unit as generic type for error.
+
+
