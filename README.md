@@ -96,9 +96,11 @@ fun invoke(): Outcome<SuccessData, DomainError> = outcome {
 }
 ```
 ##### Just a brief summary, since the could is hopefully self-explanatory:
+This example just calls three different functions, which themselves are Outcome based.
 Any execute will only return the expected value if the action is a *Success*. Otherwise the the error will be raised directly after
 mapping it to the proper type in *onError*. This makes it possible to use the values directly without any unwrapping or similar.
-This example just calls three different functions, which themselves are Outcome based.
+Any code after a error is raised, either automatically inside a execute function or manually through *raise()*, will not
+be executed.
 ```
 Hint: 
 You can always call anything in the *action* block, 
