@@ -74,20 +74,20 @@ sealed class DomainError {
 fun invoke(): Outcome<SuccessData, DomainError> = outcome {
 	// First, fetch the user preferences
 	val userToggle: Boolean = execute(
-	  action = { userPreferences.getToggle() } ,
-	  onError = { DomainError.UserPreferencesError } 
+	   action = { userPreferences.getToggle() } ,
+	   onError = { DomainError.UserPreferencesError } 
 	)
 
 	// Use toggle 
 	val text = if (userToggle) {
 	   execute(
-		 action = { localDataRepository.getData() },
-		 onError = { DomainError.LocalError },
+	      action = { localDataRepository.getData() },
+	      onError = { DomainError.LocalError },
 	   )	
 	} else {
 	   execute(
 	      action = { remoteDataRepository.getData() },
-		  onError = { DomainError.RemoteError },
+	      onError = { DomainError.RemoteError },
 	   ) 
 	}
 
