@@ -59,7 +59,7 @@ Think of an usecase class which does some sort of data fetching through multiple
 - Remote data repository
 
 ##### Additionally, these two types are defined as Success and Error types, which will be used for the outcome:
-```
+```kotlin
 data class SuccessData(val text: String)
 
 sealed class DomainError {	
@@ -70,7 +70,7 @@ sealed class DomainError {
 ```
 
 ##### The UseCase class would implement something like this invoke function:
-```
+```kotlin
 fun invoke(): Outcome<SuccessData, DomainError> = outcome {
 	// First, fetch the user preferences
 	val userToggle: Boolean = execute(
@@ -116,7 +116,7 @@ there are multiple extension functions, which can be used to create these instan
 ##### 2.1. Create a Success or Error instance from any data type, without providing a Error type.
 Create an object instance of *Success* or *Error* just by calling one extension function directly on it.
 
-```
+```kotlin
 // Short extension functions
 val success = "Any object".asSuccess()
 val error   = "Any object".asError()
@@ -131,9 +131,9 @@ Hint: These instances do have a *Nothing* success or error type, depending on wh
 Create an object instance of *Success* or *Error* just by calling one extension function directly on it.
 It is necessary to provide both Success and Error generic types.
 
-```
-val typedSuccess = "Any object".asTypedSuccess<String, *Error*>()
-val typedError   = "Any object".asTypedError<*Success*, String>()
+```kotlin
+val typedSuccess = "Any object".asTypedSuccess<String, ErrorType>()
+val typedError   = "Any object".asTypedError<SuccessType, String>()
 ```
 
 #### 3. Pitfalls
