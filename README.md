@@ -49,7 +49,7 @@ execute provides an action to call any outcome based code and an error mapping l
 raise provides an manual way to return an error inside the builder block
 ```
 
-#### 1.1 Example
+#### 1.1a Explicit Example
 Easiest way to describe the intended usage is a proper example.
 Think of an usecase class which does some sort of data fetching through multiple repositories.
 
@@ -106,6 +106,35 @@ Hint:
 You can always call anything in the *action* block, 
 even if it's not outcome base and just call any wrapping function to make it a Outcome, 
 e.g. ".asSuccess()".
+```
+
+##### 1.1b Implicit example (__Recommended__)
+
+If the calls to other classes or objects are already outcome-base it is even easier and more readable
+to use an extension function provided by the builder function.
+It extends any outcome with the **raiseOnError {}** function.
+Just add it to e.g. the repository call and put the error mapping into a lambda, done.
+Same effects as the explicit execute version, but even more convenient.
+
+##### The UseCase class would implement something like this invoke function:
+```kotlin
+fun invoke(): Outcome<SuccessData, DomainError> = outcome {
+	// First, fetch the user preferences
+	val userToggle: Boolean = userPreferences.getToggle() 
+                                             .raiseOnError { DomainError.UserPreferencesError }
+
+	// Use toggle 
+	val text = if (userToggle) {
+        localDataRepository.getData()
+                           .raiseOnError { DomainError.LocalError }
+	} else {
+        remoteDataRepository.getData()
+                            .raiseOnError { DomainError.UserPreferencesError }
+	}
+
+	// Explicit return not necessary, but for the sake of this example easier to understand
+	text
+}
 ```
 
 #### 2. Direct instance creation
