@@ -3,14 +3,14 @@
 # ================================================
 [versions]
 # build config
-kotlinter = "5.1.1"
+kotlinter = "5.2.0"
 
 # kotlin + kotlin libs
-kotlin-lang = "2.1.21"
+kotlin-lang = "2.2.20"
 kotlin-coroutines = "1.10.2"
 
 # unit test
-kotest = "5.9.1"
+kotest = "6.0.3"
 
 # ================================================
 # Librarie definitions
@@ -22,7 +22,6 @@ kotlin_coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutine
 
 # Unit testing
 kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
-kotest-datatest = { group = "io.kotest", name = "kotest-framework-datatest", version.ref = "kotest" }
 
 # build-config dependencies
 build-kotlin-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-lang" }

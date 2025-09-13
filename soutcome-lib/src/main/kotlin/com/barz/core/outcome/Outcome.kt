@@ -4,6 +4,7 @@ import com.barz.core.outcome.helpers.asError
 import com.barz.core.outcome.helpers.asSuccess
 
 sealed class Outcome<out SuccessType, out ErrorType> {
+    @ConsistentCopyVisibility
     data class Success<SuccessType> internal constructor(
         val value: SuccessType,
     ) : Outcome<SuccessType, Nothing>() {
@@ -15,6 +16,7 @@ sealed class Outcome<out SuccessType, out ErrorType> {
         companion object
     }
 
+    @ConsistentCopyVisibility
     data class Error<out ErrorType> internal constructor(
         val error: ErrorType,
     ) : Outcome<Nothing, ErrorType>() {

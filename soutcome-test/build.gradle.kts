@@ -8,5 +8,4 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:5.5.0"))
     testImplementation(libs.kotest.runner)
-    testImplementation(libs.kotest.datatest)
 }
